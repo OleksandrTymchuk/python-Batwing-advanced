@@ -9,16 +9,13 @@ class Profile:
         self.age = age
         self.sex = sex
 
+    def __str__(self):
+        lst = []
+        for value in self.__dict__.values():
+            lst.append(value)
+        return lst.__repr__()
+
 
 o_tymchuk = Profile('Oleksandr', 'Tymchuk', '123456789', 'Lutsk City',
                             'o.tymchuk@gmail.com', '06.10.2000', '21', 'male')
-
-
-print(o_tymchuk.__dict__)
-print(f'Hello my name is {o_tymchuk.name} {o_tymchuk.last_name},'
-      f' my phone number: {o_tymchuk.phone_number},'
-      f' my address: {o_tymchuk.address},'
-      f' my email: {o_tymchuk.email},'
-      f' my date of birthday: {o_tymchuk.birthday},'
-      f' im {o_tymchuk.age} year old'
-      f' and im {o_tymchuk.sex}')
+print(o_tymchuk)
