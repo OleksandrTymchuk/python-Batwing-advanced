@@ -17,5 +17,5 @@ class Profile:
 
 
 o_tymchuk = Profile('Oleksandr', 'Tymchuk', '123456789', 'Lutsk City',
-                            'o.tymchuk@gmail.com', '06.10.2000', '21', 'male')
+                    'o.tymchuk@gmail.com', '06.10.2000', '21', 'male')
 print(o_tymchuk)

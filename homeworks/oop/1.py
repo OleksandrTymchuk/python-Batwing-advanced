@@ -1,4 +1,3 @@
-from abc import abstractclassmethod, ABC
 #  1_____________________________________________
 
 class Animal:
