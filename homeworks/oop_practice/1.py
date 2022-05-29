@@ -94,4 +94,3 @@ realtor = Realtor('Alice', [house1, house2, house3], '15%')
 realtor.provide_info()
 realtor.realtor_discount()
 realtor.steal_money(human)
-
