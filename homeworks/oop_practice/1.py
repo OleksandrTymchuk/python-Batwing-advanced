@@ -59,7 +59,17 @@ class SmallHouse(House):
             pass
 
 
-class Realtor:
+class RealtorMeta(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            instance = super().__call__(*args, **kwargs)
+            cls._instances[cls] = instance
+        return cls._instances[cls]
+
+
+class Realtor(metaclass=RealtorMeta):
     def __init__(self, name, houses, discount):
         self.name = name
         self.houses = houses
