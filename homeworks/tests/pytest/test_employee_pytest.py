@@ -1,6 +1,4 @@
-from employee import Employee
-import pytest
-
+from homeworks.tests.unittest.employee import Employee
 
 otymchuk = Employee('Oleksandr', 'Tymchuk', 500)
 

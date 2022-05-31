@@ -1,5 +1,5 @@
 import unittest
-from employee import Employee
+from homeworks.tests.unittest.employee import Employee
 
 
 class TestEmployee(unittest.TestCase):
