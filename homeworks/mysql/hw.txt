@@ -1,0 +1,41 @@
+1
+mysql> CREATE DATABASE school66;
+exit
+mysql -u root -p school66 < school66.sql
+
+2
+sudo mysql -u root -p
+USE school66;
+CREATE TABLE level (student_id INT NOT NULL, level_number INT);
+INSERT INTO level (level_number, student_id) VALUES (10, 1), (9, 2), (8, 3), (7,4), (6, 5);
+SELECT s.first_name, s.last_name, l.level_number FROM level l INNER JOIN students s ON l.student_id = s.id;
+
++------------+-----------+--------------+
+| first_name | last_name | level_number |
++------------+-----------+--------------+
+| Ivan       | Pidhaynuy |           10 |
+| Petro      | Pravdoryb |            9 |
+| Yuriy      | Skobylko  |            8 |
+| Liubomyr   | Luzhnyi   |            7 |
+| Oleksandr  | Tymchuk   |            6 |
++------------+-----------+--------------+
+
+
+3
+SELECT s.first_name, s.last_name, lv.level_number, l.name, l.id name, t.lesson_id FROM students s INNER JOIN level lv ON lv.student_id = s.id INNER JOIN students_lessons sl ON sl.student_id
+= s.id INNER JOIN lessons l ON l.id = sl.lesson_id INNER JOIN teachers t ON t.lesson_id = sl.lesson_id;
+
++------------+-----------+--------------+---------+------+-----------+
+| first_name | last_name | level_number | name    | name | lesson_id |
++------------+-----------+--------------+---------+------+-----------+
+| Ivan       | Pidhaynuy |           10 | IT      |    3 |         3 |
+| Petro      | Pravdoryb |            9 | Math    |    2 |         2 |
+| Petro      | Pravdoryb |            9 | Biology |    1 |         1 |
+| Petro      | Pravdoryb |            9 | Biology |    1 |         1 |
+| Yuriy      | Skobylko  |            8 | Math    |    2 |         2 |
+| Yuriy      | Skobylko  |            8 | Biology |    1 |         1 |
+| Yuriy      | Skobylko  |            8 | Biology |    1 |         1 |
+| Liubomyr   | Luzhnyi   |            7 | IT      |    3 |         3 |
+| Liubomyr   | Luzhnyi   |            7 | Biology |    1 |         1 |
+| Liubomyr   | Luzhnyi   |            7 | Biology |    1 |         1 |
++------------+-----------+--------------+---------+------+-----------+
