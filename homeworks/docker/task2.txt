@@ -1,0 +1,6 @@
+docker build . -t my_story
+docker run -it --name my_story ubuntu
+echo "your story" > story.txt
+apt-get update
+apt-get install cowsay
+cat story.txt|./usr/games/cowsay
