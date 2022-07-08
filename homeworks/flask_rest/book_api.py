@@ -1,7 +1,5 @@
 import http
-
 from flask import Blueprint, Response, request
-
 from db.bookdb import BookDB
 
 book_router = Blueprint('book', __name__, url_prefix='/book')
@@ -33,15 +31,14 @@ def create():
         return new_book, http.HTTPStatus.CREATED
 
 
-@book_router.route('', methods=['PUT'])
-def update():
+@book_router.route('/<id>', methods=['PUT'])
+def update(id):
     name = request.json.get("name")
     author = request.json.get("author")
     genre = request.json.get("genre")
-    id = request.json.get("id")
-    update_user = db.update(name, author, genre, id)
+    update_book = db.update(name, author, genre, id)
 
-    if not update_user:
+    if not update_book:
         return "This book doesn't exists", http.HTTPStatus.BAD_REQUEST
     else:
         return "Books data has been changed", http.HTTPStatus.CREATED

@@ -1,5 +1,5 @@
 class BookDB:
-    books = [{"id": 1, "name": "The Witcher", "author": "Andrzej Sapkowski.", "genre": "Fantasy"}]
+    books = [{"name": "The Witcher", "author": "Andrzej Sapkowski", "genre": "Fantasy", "id": 1}]
 
     def get_all(self):
         return self.books
@@ -9,9 +9,9 @@ class BookDB:
             book_id = int(id)
             for book in self.books:
                 if book["id"] == book_id:
-                    result = book
+                    return book
                 else:
-                    result = ('Sad', 400)
+                    return 'Sad', 400
 
         except Exception:
             result = ("Wrong data (You must use only numbers for books id's)", 400)
@@ -34,9 +34,10 @@ class BookDB:
             self.books.append(book)
             return book
 
-    def update(self, name, author, genre, id=int):
+    def update(self, name, author, genre, id):
+        int_id = int(id)
         for book in self.books:
-            if book["id"] == id:
+            if book["id"] == int_id:
                 book["author"] = author
                 book["genre"] = genre
                 book['name'] = name
