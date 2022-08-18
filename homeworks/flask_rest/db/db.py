@@ -11,7 +11,6 @@ class UserDB:
         return None
 
     def add(self, name, email, password_hash):
-        # add check if user already exists
         user = {
             "name": name,
             "email": email,
@@ -26,7 +25,8 @@ class UserDB:
                 user["name"] = name
                 user["password"] = password
                 return user
-        return None
+            else:
+                pass
 
     def delete_by_email(self, email):
         self.users = [user for user in self.users if user["email"] != email]

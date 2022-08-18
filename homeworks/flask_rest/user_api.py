@@ -1,7 +1,5 @@
 import http
-
 from flask import Blueprint, Response, request
-
 from db.db import UserDB
 
 user_router = Blueprint('user', __name__, url_prefix='/user')
@@ -34,12 +32,11 @@ def update():
     name = request.json.get("name")
     email = request.json.get("email")
     password = request.json.get("password")
-    update_user = db.update_by_email(name, email, password)
-
-    if not update_user:
+    upd_user = db.update_by_email(name, email, password)
+    if not upd_user:
         return "This user doesn't exists", http.HTTPStatus.BAD_REQUEST
     else:
-        return "User's data has been changed", http.HTTPStatus.CREATED
+        return "Users data has been changed", http.HTTPStatus.CREATED
 
 
 @user_router.route('/<string:email>', methods=['DELETE'])
