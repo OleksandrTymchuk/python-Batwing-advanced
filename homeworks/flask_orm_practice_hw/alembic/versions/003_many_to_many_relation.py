@@ -20,8 +20,8 @@ def upgrade() -> None:
     op.create_table(
         "book_author",
         sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
-        sa.Column("author", sa.String, nullable=False),
-        sa.Column("book", sa.String, nullable=False)
+        sa.Column("book_id", sa.Integer, sa.ForeignKey("book.id")),
+        sa.Column("author_id", sa.Integer, sa.ForeignKey("author.id"))
     )
 
 

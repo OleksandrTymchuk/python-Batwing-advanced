@@ -24,16 +24,16 @@ def retrieve(id_):
     return jsonify(data_json)
 
 
-@book_author_router.route('/<int:book_id>/<int:author_id>')
+@book_author_router.route('/<int:book_id>/<int:author_id>', methods=['POST'])
 def create(book_id, author_id):
     if Book.query.filter(
             Book.id == book_id).first() and Author.query.filter(
             Author.id == author_id).first():
-        data = BookAuthor(book_id=book_id, author_id=author_id)
-        db.session.add(data)
+        new_relation = BookAuthor(book_id=book_id, author_id=author_id)
+        db.session.add(new_relation)
         db.session.commit()
-        data_json = BookAuthorSchema().dump(data)
-        return jsonify(data_json), http.HTTPStatus.CREATED
+        new_relation_json = BookAuthorSchema().dump(new_relation)
+        return jsonify(new_relation_json), http.HTTPStatus.CREATED
     else:
         return 'error', http.HTTPStatus.BAD_REQUEST
 
@@ -46,8 +46,8 @@ def update():
         book_author_data.book_id, book_author_data.author_id = data["book_id"], data["author_id"]
         db.session.add(book_author_data)
         db.session.commit()
-        b_a_update = BookAuthorSchema().dump(book_author_data)
-        return jsonify(b_a_update)
+        book_author = BookAuthorSchema().dump(book_author_data)
+        return jsonify(book_author)
     else:
         return 'error', http.HTTPStatus.BAD_REQUEST
 

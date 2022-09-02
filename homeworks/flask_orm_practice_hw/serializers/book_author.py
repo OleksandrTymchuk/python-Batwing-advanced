@@ -5,6 +5,5 @@ from serializers.book import BookSchema
 
 class BookAuthorSchema(Schema):
     id = fields.Integer(required=True, dump_only=True)
-    author = fields.Nested(AuthorSchema())
-    book = fields.Nested(BookSchema())
-    
+    authors = fields.Nested(AuthorSchema())
+    books = fields.Nested(BookSchema())

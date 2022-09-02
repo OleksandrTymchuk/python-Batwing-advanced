@@ -1,8 +1,6 @@
 import http
-
 from flask import Blueprint, request, jsonify
 from marshmallow import ValidationError
-
 from database import db
 from models.author import Author
 from serializers.author import AuthorSchema
@@ -21,7 +19,7 @@ def get():
 @author_router.route('/<int:id_>')
 def retrieve(id_):
     author_schema = AuthorSchema()
-    author = Author.query.filter(Author.author_id == id_).first()
+    author = Author.query.filter(Author.id == id_).first()
     authors_json = author_schema.dump(author)
     return jsonify(authors_json)
 
@@ -29,7 +27,6 @@ def retrieve(id_):
 @author_router.route('', methods=['POST'])
 def create():
     data = request.get_json(force=True)
-
     schema = AuthorSchema()
     try:
         author_data = schema.load(data)
@@ -52,7 +49,7 @@ def update(id_):
     schema = AuthorSchema()
     try:
         author_data = schema.load(data)
-        author = Author.query.filter_by(author_id=id_).first()
+        author = Author.query.filter_by(id=id_).first()
         author.first_name = author_data['first_name']
         author.last_name = author_data['last_name']
         db.session.add(author)
@@ -67,6 +64,6 @@ def update(id_):
 
 @author_router.route('/<int:id_>', methods=['DELETE'])
 def delete(id_):
-    Author.query.filter_by(author_id=id_).delete()
+    Author.query.filter_by(id=id_).delete()
     db.session.commit()
     return {}, http.HTTPStatus.NO_CONTENT

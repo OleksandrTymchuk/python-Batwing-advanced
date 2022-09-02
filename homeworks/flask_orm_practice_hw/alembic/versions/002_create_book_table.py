@@ -19,7 +19,7 @@ depends_on = None
 def upgrade() -> None:
     op.create_table(
         "book",
-        sa.Column("book_id", sa.Integer, primary_key=True, autoincrement=True),
+        sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
         sa.Column("title", sa.String(300), nullable=False, unique=True),
         sa.Column("description", sa.String(3000), nullable=False, unique=True)
     )
@@ -27,4 +27,3 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     op.drop_table("book")
-
